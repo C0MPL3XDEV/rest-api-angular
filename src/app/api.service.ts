@@ -5,6 +5,7 @@ import {HttpClient} from '@angular/common/http';
 @Injectable({
   providedIn: 'root'
 })
+
 export class ApiService {
 
   constructor() { }
@@ -22,5 +23,9 @@ export class ApiService {
 
   getAllProducts(): Observable<any> {
     return this.httpClient.get(this.apiUrl + 'products');
+  }
+
+  getProductById(id: number): Observable<any> {
+    return this.httpClient.get(this.apiUrl + 'products/' + id);
   }
 }

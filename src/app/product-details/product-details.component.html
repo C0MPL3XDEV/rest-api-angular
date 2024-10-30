@@ -1,0 +1,15 @@
+<html>
+<body>
+<app-navbar></app-navbar>
+<div class="flex flex-wrap justify-center mt-5">
+  <div class="bg-white border border-gray-300 rounded-lg shadow-lg p-10 max-w-md mx-auto transition-transform transform hover:scale-105">
+    <h1 class="text-center font-bold text-3xl text-gray-800 mb-4">Product Details:</h1>
+    <h2 class="text-lg font-semibold text-black">ID: <span class="text-gray-800">{{product?.id }}</span></h2>
+    <h2 class="text-lg font-semibold text-black">Name: <span class="text-gray-800">{{product?.name}}</span></h2>
+    <h2 class="text-lg font-semibold text-black">Price: <span class="text-gray-800">${{product?.price}}</span></h2>
+    <h2 class="text-lg font-semibold text-black">Description: <span class="text-gray-800">{{product?.description}}</span></h2>
+    <h2 class="text-lg font-semibold text-black">Created At: <span class="text-gray-800">{{product?.created_at ? product?.created_at : "NULL" }}</span></h2>
+  </div>
+</div>
+</body>
+</html>

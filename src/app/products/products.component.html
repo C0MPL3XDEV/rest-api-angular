@@ -1,1 +1,13 @@
-<p>Products</p>
+<html>
+<body>
+<app-navbar></app-navbar>
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
+  <div class="bg-white border rounded-lg shadow-lg border-gray-200 p-4 " *ngFor="let product of products">
+    <h1 class="text-xl font-semibold">{{product.name}}</h1>
+    <p class="text-gray-500">{{product.description}}</p>
+    <p class="text-gray-500">{{product.price}}</p>
+    <a [routerLink]="['/details/', product.id]"><button class="bg-blue-500 text-center text-white p-2 rounded-lg font-semibold mt-3">Product Details</button></a>
+  </div>
+</div>
+</body>
+</html>
