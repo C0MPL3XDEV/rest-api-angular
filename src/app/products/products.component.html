@@ -1,12 +1,16 @@
 <html>
 <body>
 <app-navbar></app-navbar>
-<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4 p-4">
   <div class="bg-white border rounded-lg shadow-lg border-gray-200 p-4 " *ngFor="let product of products">
     <h1 class="text-xl font-semibold">{{product.name}}</h1>
     <p class="text-gray-500">{{product.description}}</p>
-    <p class="text-gray-500">{{product.price}}</p>
-    <a [routerLink]="['/details/', product.id]"><button class="bg-blue-500 text-center text-white p-2 rounded-lg font-semibold mt-3">Product Details</button></a>
+    <p class="text-gray-500">{{product.price + "$"}}</p>
+    <div class="flex flex-row gap-2.5">
+      <a [routerLink]="['/details/', product.id]"><button class="bg-blue-500 text-center text-white p-2 rounded-lg font-semibold mt-3 hover:bg-blue-600">Product Details</button></a>
+      <a [routerLink]="['/update/', product.id]"><button class="bg-green-500 text-center text-white p-2 rounded-lg font-semibold mt-3 hover:bg-green-600">Update Product</button></a>
+      <a [routerLink]="['/delete/', product.id]"><button class="bg-red-500 text-center text-white p-2 rounded-lg font-semibold mt-3 hover:bg-red-600">DELETE Product</button></a>
+    </div>
   </div>
 </div>
 </body>
