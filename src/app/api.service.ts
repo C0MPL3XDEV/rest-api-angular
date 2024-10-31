@@ -36,4 +36,12 @@ export class ApiService {
   deleteProduct(id: number): Observable<any> {
     return this.httpClient.delete(this.apiUrl + 'products/' + id);
   }
+
+  createProduct(name: string, description: string, price: string): Observable<any> {
+    return this.httpClient.post(this.apiUrl + 'products', {name, description, price});
+  }
+
+  logout(): Observable<any> {
+    return this.httpClient.post(this.apiUrl + 'logout', null);
+  }
 }

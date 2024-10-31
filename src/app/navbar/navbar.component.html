@@ -6,8 +6,19 @@
     <div class="flex flex-1 justify-center">
       <input placeholder="Search" class="rounded-lg border-gray-300 border p-2 w-full max-w-md "/>
     </div>
-    <div class="flex justify-between">
-      <button class="bg-red-500 text-center text-white p-2 rounded-lg font-semibold ">Logout</button>
+    <div class="flex justify-between gap-2">
+      <a [routerLink]="['/create']"><button class="bg-green-500 flex items-center justify-center text-white p-2 rounded-lg font-semibold space-x-2 hover:bg-green-600">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+        </svg>
+        <span>Create Product</span>
+      </button></a>
+      <a [routerLink]="['/logout']"><button class="bg-red-500 flex items-center justify-center text-white p-2 rounded-lg font-semibold space-x-2 hover:bg-red-600">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 9V5.25A2.25 2.25 0 0 1 10.5 3h6a2.25 2.25 0 0 1 2.25  2.25v13.5A2.25 2.25 0 0 1 16.5 21h-6a2.25 2.25 0 0 1-2.25-2.25V15m-3 0-3-3m0 0 3-3m-3 3H15" />
+        </svg>
+        <span>Logout</span>
+      </button></a>
     </div>
   </div>
   </body>
