@@ -44,4 +44,8 @@ export class ApiService {
   logout(): Observable<any> {
     return this.httpClient.post(this.apiUrl + 'logout', null);
   }
+
+  getProfile(): Observable<any> {
+    return this.httpClient.get(this.apiUrl + 'profile');
+  }
 }
