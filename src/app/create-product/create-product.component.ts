@@ -3,13 +3,15 @@ import {NavbarComponent} from '../navbar/navbar.component';
 import {FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
 import {ApiService} from '../api.service';
 import {Router} from '@angular/router';
+import {NgIf} from '@angular/common';
 
 @Component({
   selector: 'app-create-product',
   standalone: true,
   imports: [
     NavbarComponent,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgIf
   ],
   templateUrl: './create-product.component.html',
   styleUrl: './create-product.component.css'
@@ -29,7 +31,8 @@ export class CreateProductComponent {
       this.createForm.value.name ?? "",
       this.createForm.value.description ?? "",
       this.createForm.value.price ?? "",
-    ).subscribe(response => {
+    ).subscribe (
+      (response) => {
       console.log(response);
       this.router.navigate(['/home']);
     })

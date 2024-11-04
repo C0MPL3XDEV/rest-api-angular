@@ -1,9 +1,10 @@
-import {Component, inject} from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
 import {RouterLink} from '@angular/router';
 import {Router} from '@angular/router';
 import {FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
 import {ApiService} from '../api.service';
 import {NgIf} from '@angular/common';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -17,12 +18,17 @@ import {NgIf} from '@angular/common';
   styleUrl: './login.component.css'
 })
 
-export class LoginComponent {
+export class LoginComponent implements OnInit {
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private currentRoute: ActivatedRoute) {
   }
 
+  redirectUrl: string | null = null;
   errorMsg: string | null = null;
+
+  ngOnInit() {
+    this.redirectUrl = this.currentRoute.snapshot.queryParamMap.get('redirectUrl');
+  }
 
   apiService = inject(ApiService);
 
@@ -37,17 +43,17 @@ export class LoginComponent {
       this.loginForm.value.password ?? "",
     ).subscribe(
       (response) => {
+        const navigateTo = this.redirectUrl ? this.redirectUrl : '/home';
         console.log(response);
         localStorage.setItem('token', response.token);
-        this.router.navigate(['/home']);
+        this.router.navigateByUrl(navigateTo);
       },
-      (error) => {
-        if (error.status === 401) {
-          this.errorMsg = "Invalid Credentials - Please Try Again";
-          console.log(this.errorMsg);
+        (error) => {
+          if (error.status === 401) {
+            this.errorMsg = "Invalid Credentials - Please Retry"
+          }
         }
-      }
-    )
+      )
   }
 
 }

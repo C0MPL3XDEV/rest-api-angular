@@ -13,6 +13,10 @@ export class ApiService {
   httpClient = inject(HttpClient);
   apiUrl = 'http://127.0.0.1:8000/api/';
 
+  isAuthenticated(): Boolean {
+    return !!localStorage.getItem('token');
+  }
+
   login(email: string, password: string): Observable<any> {
     return this.httpClient.post(this.apiUrl + 'login', {email, password});
   }

@@ -3,24 +3,21 @@
     <app-navbar></app-navbar>
     <div class="flex items-center justify-center min-h-screen">
       <div class="p-8 rounded-lg shadow-lg w-full max-w-3xl">
-        <h2 class="text-2xl font-semibold mb-4 text-center text-black">Create New Product</h2>
-        <p class="text-gray-600 text-center mb-6">Enter Product Details To Create</p>
-
-        <p>{{profileData?.user?.id}}</p>
-
+        <h2 class="text-2xl font-semibold mb-4 text-center text-black">Profile Details</h2>
+        <p class="text-gray-600 text-center mb-6">Your Profile Information</p>
         <div class="mb-6">
-          <label for="productName" class="block text-black text-sm font-semibold mb-2">Product Name:</label>
-          <input type="text" id="productName" name="name" class="form-input w-full border rounded-lg px-4 py-2" required placeholder="Enter Product Name">
+          <label for="userFullName" class="block text-black text-sm font-semibold mb-2">Full Name:</label>
+          <input type="text" id="userFullName" name="name" class="form-input w-full border rounded-lg px-4 py-2" value="{{profileData?.user?.name}}" required readonly placeholder="Full Name">
         </div>
         <div class="mb-6">
-          <label for="productDescription" class="block text-black text-sm font-semibold mb-2">Product Description:</label>
-          <textarea type="text" id="productDescription" name="description" class="form-textarea text-black w-full border rounded-lg px-4 py-2 h-40" required></textarea>
+          <label for="userName" class="block text-black text-sm font-semibold mb-2">Username:</label>
+          <input type="text" id="userName" name="email" class="form-input w-full border rounded-lg px-4 py-2" value="{{profileData?.user?.email}}" required readonly placeholder="Username">
         </div>
         <div class="mb-6">
-          <label for="productPrice" class="block text-black text-sm font-semibold mb-2">Product Price:</label>
-          <input type="text" id="productPrice" name="price" class="form-input w-full border rounded-lg px-4 py-2" required placeholder="Enter Product Price">
+          <label for="userId" class="block text-black text-sm font-semibold mb-2">Profile ID:</label>
+          <input type="text" id="userId" name="price" class="form-input w-full border rounded-lg px-4 py-2" value="{{profileData?.user?.id}}" required readonly placeholder="Password">
         </div>
-        <button type="submit" class="w-full bg-blue-500 rounded-lg p-2 text-white hover:bg-blue-600">Create Product</button>
+        <button [routerLink]="['/home']" class="w-full bg-blue-500 rounded-lg p-2 text-white hover:bg-blue-600">Go Back To Home Page</button>
       </div>
     </div>
   </body>
