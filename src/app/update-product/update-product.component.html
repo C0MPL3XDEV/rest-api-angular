@@ -2,7 +2,11 @@
 <body>
 <app-navbar></app-navbar>
 
-<div class="flex items-center justify-center min-h-screen">
+<div *ngIf="errorMsg" class="flex items-center justify-center min-h-screen min-w-screen w-full bg-gray-100">
+  <app-not-found></app-not-found><span class="text-gray-600 text-2xl font-semibold">{{ errorMsg }}</span>
+</div>
+
+<div class="flex items-center justify-center min-h-screen" *ngIf="product">
   <div class="p-8 rounded-lg shadow-lg w-full max-w-3xl">
     <h2 class="text-2xl font-semibold mb-4 text-center text-black">Update Product</h2>
     <p class="text-gray-600 text-center mb-6">Enter Product Details To Update</p>
@@ -11,16 +15,20 @@
       <div class="mb-6">
         <label for="productName" class="block text-black text-sm font-semibold mb-2">Product Name:</label>
         <input type="text" id="productName" formControlName="name" name="name" class="form-input w-full border rounded-lg px-4 py-2" required placeholder="Enter Product Name">
+        <p class="text-red-500" *ngIf="updateForm.get('name')?.hasError('required') && updateForm.get('name')?.touched">Product Name Required</p>
       </div>
       <div class="mb-6">
         <label for="productDescription" class="block text-black text-sm font-semibold mb-2">Product Description:</label>
         <textarea type="text" id="productDescription" formControlName="description" name="description" class="form-textarea text-black w-full border rounded-lg px-4 py-2 h-40" required></textarea>
+        <p class="text-red-500" *ngIf="updateForm.get('description')?.hasError('required') && updateForm.get('description')?.touched">Product Description Required</p>
       </div>
       <div class="mb-6">
         <label for="productPrice" class="block text-black text-sm font-semibold mb-2">Product Price:</label>
         <input type="text" id="productPrice" formControlName="price" name="price" class="form-input w-full border rounded-lg px-4 py-2" required placeholder="Enter Product Price">
+        <p class="text-red-500" *ngIf="updateForm.get('price')?.hasError('required') && updateForm.get('price')?.touched">Product Price Required</p>
       </div>
       <button type="submit" class="w-full bg-blue-500 rounded-lg p-2 text-white">Update Product</button>
+      <p *ngIf="errorMsg" class="text-red-500 text-xs text-center mt-4">{{errorMsg}}</p>
     </form>
   </div>
 </div>

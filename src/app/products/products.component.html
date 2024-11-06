@@ -1,8 +1,9 @@
 <html>
 <body>
 <app-navbar></app-navbar>
+<h1 class="text-center font-semibold text-3xl p-2 mt-4">Welcome Back {{userData?.user?.name}}!</h1>
 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4 p-4">
-  <div class="bg-white border rounded-lg shadow-lg border-gray-200 p-4 " *ngFor="let product of products">
+  <div class="bg-white border rounded-lg shadow-lg border-gray-200 p-4 transition-transform transform hover:scale-105" *ngFor="let product of products">
     <h1 class="text-xl font-semibold">{{product.name}}</h1>
     <p class="text-gray-500">{{product.description}}</p>
     <p class="text-gray-500">{{product.price + "$"}}</p>

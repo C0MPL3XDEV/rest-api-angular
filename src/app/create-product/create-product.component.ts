@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {NavbarComponent} from '../navbar/navbar.component';
-import {FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
+import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {ApiService} from '../api.service';
 import {Router} from '@angular/router';
 import {NgIf} from '@angular/common';
@@ -21,20 +21,37 @@ export class CreateProductComponent {
   constructor(private apiService: ApiService, private router: Router) { }
 
   createForm = new FormGroup({
-    name: new FormControl(''),
-    description: new FormControl(''),
-    price: new FormControl(''),
+    name: new FormControl('', [Validators.required]),
+    description: new FormControl('', [Validators.required]),
+    price: new FormControl('', [Validators.required]),
   });
+
+  errorMsg: string | null = null;
 
   submitCreate() {
     this.apiService.createProduct(
       this.createForm.value.name ?? "",
       this.createForm.value.description ?? "",
       this.createForm.value.price ?? "",
-    ).subscribe (
-      (response) => {
-      console.log(response);
-      this.router.navigate(['/home']);
+    ).subscribe({
+      next: (response) => {
+        console.log(response);
+        this.router.navigate(['/home']).then(success => {
+          if (success) {
+            console.log("Success");
+          } else {
+            console.log("Error");
+          }
+        }).catch(error => {
+          console.log(error);
+        });
+      },
+      error: (error) => {
+        this.errorMsg = error.message;
+      },
+      complete: () => {
+        console.log("Complete")
+      }
     })
   }
 
